@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technova Solutions - AI/ML & Data Analytics Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-dark: #0f172a;
+            --primary-blue: #1e40af;
+            --secondary-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-teal: #0d9488;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --border-light: #e2e8f0;
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+        }
+
+        /* Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1e40af, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        nav a:hover {
+            color: var(--secondary-blue);
+        }
+
+        .cta-btn {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-weight: 600;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 0.5rem;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            border-radius: 2px;
+        }
+
+        /* Page Sections */
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            min-height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .hero .tagline {
+            font-size: 1.5rem;
+            color: #cffafe;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-cyan);
+            color: var(--primary-dark);
+        }
+
+        .btn-primary:hover {
+            background: #22d3ee;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-blue);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--primary-dark);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* Cards Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border-light);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon.blue {
+            background: rgba(30, 64, 175, 0.1);
+            color: var(--primary-blue);
+        }
+
+        .card-icon.cyan {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--accent-cyan);
+        }
+
+        .card-icon.teal {
+            background: rgba(13, 148, 136, 0.1);
+            color: var(--accent-teal);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        .card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        /* Case Studies */
+        .case-study {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--secondary-blue);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .case-study h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .case-study .client {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .case-study .result {
+            background: rgba(6, 182, 212, 0.1);
+            padding: 1rem;
+            border-radius: 0.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-light);
+            border-radius: 0.5rem;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: var(--secondary-blue);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Testimonials */
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            box-shadow: var(--shadow-md);
+            border-top: 3px solid var(--accent-cyan);
+        }
+
+        .stars {
+            color: #fbbf24;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .testimonial p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .testimonial .author {
+            color: var(--primary-dark);
+            font-weight: 600;
+        }
+
+        /* Team Section */
+        .team-member {
+            text-align: center;
+        }
+
+        .team-member-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #1e40af, #06b6d4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        .team-member h4 {
+            color: var(--primary-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .team-member .role {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Careers Page */
+        .job-opening {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--accent-teal);
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .job-opening:hover {
+            transform: translateX(10px);
+        }
+
+        .job-opening h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .job-opening .job-type {
+            display: inline-block;
+            background: rgba(13, 148, 136, 0.15);
+            color: var(--accent-teal);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .job-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+            font-size: 0.95rem;
+        }
+
+        .job-detail {
+            color: var(--text-light);
+        }
+
+        .job-detail strong {
+            display: block;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        /* Blog Section */
+        .blog-post {
+            background: white;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.3s ease;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-post-meta {
+            padding: 2rem;
+            padding-bottom: 1rem;
+        }
+
+        .blog-post .date {
+            color: var(--accent-cyan);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-post h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .blog-post p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--secondary-blue);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--accent-cyan);
+        }
+
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.75rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            margin: 0;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-cyan);
+            color: var(--primary-dark);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        /* Trust Section */
+        .trust-section {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: white;
+            border-radius: 0.75rem;
+            margin: 3rem 0;
+        }
+
+        .trust-section h3 {
+            margin-bottom: 2rem;
+            color: var(--primary-dark);
+        }
+
+        .partners {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .partner-logo {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--border-light);
+            border-radius: 0.5rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .modal-close {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+
+        .modal-close:hover {
+            color: var(--text-dark);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: white;
+                padding: 1rem;
+                border-bottom: 1px solid var(--border-light);
+                gap: 1rem;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        /* Alert Messages */
+        .alert {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .alert.success {
+            background: rgba(13, 148, 136, 0.15);
+            color: var(--accent-teal);
+            border-left: 4px solid var(--accent-teal);
+        }
+
+        .alert.active {
+            display: block;
+        }
+
+        .success-checkmark {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <header>
+        <nav>
+            <div class="logo">Technova</div>
+            <ul id="navMenu">
+                <li><a onclick="showPage('home')">Home</a></li>
+                <li><a onclick="showPage('about')">About Us</a></li>
+                <li><a onclick="showPage('services')">Services</a></li>
+                <li><a onclick="showPage('case-studies')">Case Studies</a></li>
+                <li><a onclick="showPage('blog')">Insights</a></li>
+                <li><a onclick="showPage('careers')">Careers</a></li>
+                <li><a onclick="showPage('contact')">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <h1>Engineering AI-Driven Growth for Modern Businesses</h1>
+            <p class="tagline">Transform your data into strategic advantage with cutting-edge AI/ML solutions</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="showPage('contact')">Get a Consultation</button>
+                <button class="btn btn-secondary" onclick="showPage('services')">Explore Services</button>
+            </div>
+        </section>
+
+        <div class="container">
+            <h2 class="section-title">Our Expertise</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon blue">🤖</div>
+                    <h3>AI/ML Engineering</h3>
+                    <p>Build intelligent systems that learn and adapt. From predictive models to computer vision, we engineer solutions that deliver measurable business impact.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon cyan">🧠</div>
+                    <h3>GPT Model Solutions</h3>
+                    <p>Harness the power of large language models. Custom GPT integrations for chatbots, content generation, and intelligent automation.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon teal">📊</div>
+                    <h3>Data Analytics & Visualization</h3>
+                    <p>Turn raw data into actionable insights. Real-time dashboards and advanced analytics that drive strategic decision-making.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon blue">⚙️</div>
+                    <h3>Custom Software Development</h3>
+                    <p>Scalable applications built with modern tech stacks. From MVP to enterprise solutions, we deliver robust software that grows with you.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon cyan">🔗</div>
+                    <h3>API Development & Integration</h3>
+                    <p>Seamless integration of third-party services and internal systems. RESTful APIs and webhooks that connect your entire tech ecosystem.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon teal">🛡️</div>
+                    <h3>AI Model Deployment</h3>
+                    <p>Production-ready deployment of your models. Monitoring, scaling, and optimization for reliable, high-performing AI systems.</p>
+                </div>
+            </div>
+
+            <div class="trust-section">
+                <h3>Trusted by Leading Companies</h3>
+                <div class="partners">
+                    <div class="partner-logo">TechCorp</div>
+                    <div class="partner-logo">InnovateLabs</div>
+                    <div class="partner-logo">DataSystems</div>
+                    <div class="partner-logo">CloudScale</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page">
+        <div class="container">
+            <h1 class="section-title">About Technova Solutions</h1>
+            
+            <div class="card" style="max-width: 800px; margin: 0 auto 3rem;">
+                <h2 style="color: var(--primary-dark); margin-bottom: 1.5rem;">Our Mission</h2>
+                <p style="font-size: 1.1rem; line-height: 1.8;">
+                    At Technova Solutions, we believe artificial intelligence and data analytics are transformative forces. Our mission is to empower businesses of all sizes to harness these technologies, turning complex data into competitive advantages and driving sustainable growth in the digital age.
+                </p>
+            </div>
+
+            <div class="grid" style="margin-bottom: 3rem;">
+                <div class="card">
+                    <div class="card-icon blue">👥</div>
+                    <h3>Our Team</h3>
+                    <p>50+ talented engineers, data scientists, and strategists dedicated to solving tomorrow's challenges. We attract top talent who share our passion for innovation and continuous learning.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon cyan">🎯</div>
+                    <h3>Our Culture</h3>
+                    <p>We foster an environment of innovation where every team member is encouraged to challenge the status quo, experiment fearlessly, and drive meaningful change.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon teal">🌟</div>
+                    <h3>Client Focus</h3>
+                    <p>Your success is our success. We partner closely with clients, understanding their challenges deeply and building solutions that deliver tangible business outcomes.</p>
+                </div>
+            </div>
+
+            <h2 class="section-title">Our Team</h2>
+            <div class="grid">
+                <div class="team-member">
+                    <div class="team-member-avatar">AR</div>
+                    <h4>Arjun Reddy</h4>
+                    <p class="role">CEO & Founder</p>
+                    <p style="color: var(--text-light);">15+ years in AI/ML and startup scaling</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-avatar">SP</div>
+                    <h4>Sophia Patel</h4>
+                    <p class="role">CTO</p>
+                    <p style="color: var(--text-light);">AI research and infrastructure expert</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-avatar">MK</div>
+                    <h4>Michael Kumar</h4>
+                    <p class="role">Head of Data Science</p>
+                    <p style="color: var(--text-light);">Advanced analytics and ML engineering</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-member-avatar">EC</div>
+                    <h4>Emily Chen</h4>
+                    <p class="role">VP of Product</p>
+                    <p style="color: var(--text-light);">Product strategy and customer success</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICES PAGE -->
+    <div id="services" class="page">
+        <div class="container">
+            <h1 class="section-title">Our Services</h1>
+            <p class="section-subtitle">Comprehensive AI, ML, and analytics solutions designed for your business</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon blue">🤖</div>
+                    <h3>Machine Learning Engineering</h3>
+                    <ul style="color: var(--text-light); line-height: 2;">
+                        <li>✓ Predictive modeling and forecasting</li>
+                        <li>✓ Classification and clustering algorithms</li>
+                        <li>✓ Recommendation systems</li>
+                        <li>✓ Anomaly detection</li>
+                        <li>✓ Model optimization and tuning</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon cyan">🧠</div>
+                    <h3>Generative AI & LLMs</h3>
+                    <ul style="color: var(--text-light); line-height: 2;">
+                        <li>✓ ChatGPT/Claude integration</li>
+                        <li>✓ Custom fine-tuned models</li>
+                        <li>✓ RAG (Retrieval-Augmented Generation)</li>
+                        <li>✓ Content generation automation</li>
+                        <li>✓ Intelligent chatbots</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon teal">📊</div>
+                    <h3>Data Analytics</h3>
+                    <ul style="color: var(--text-light); line-height: 2;">
+                        <li>✓ Data warehousing and ETL</li>
+                        <li>✓ Business intelligence dashboards</li>
+                        <li>✓ Statistical analysis</li>
+                        <li>✓ Real-time analytics</li>
+                        <li>✓ Data visualization</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon blue">👁️</div>
+                    <h3>Computer Vision</h3>
+                    <ul style="color: var(--text-light); line-height: 2;">
+                        <li>✓ Image classification</li>
+                        <li>✓ Object detection</li>
+                        <li>✓ Facial recognition</li>
+                        <li>✓ OCR solutions</li>
+                        <li>✓ Video analysis</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon cyan">🎙️</div>
+                    <h3>Natural Language Processing</h3>
+                    <ul style="color: var(--text-light); line-height: 2;">
+                        <li>✓ Sentiment analysis</li>
+                        <li>✓ Text classification</li>
+                        <li>✓ Named entity recognition</li>
+                        <li>✓ Language translation</li>
+                        <li>✓ Speech-to-text</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-icon teal">⚙️</div>
+                    <h3>MLOps & Deployment</h3>
+                    <ul style="color: var(--text-light); line-height: 2;">
+                        <li>✓ Model versioning</li>
+                        <li>✓ CI/CD pipelines</li>
+                        <li>✓ Production deployment</li>
+                        <li>✓ Monitoring & alerting</li>
+                        <li>✓ A/B testing frameworks</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CASE STUDIES PAGE -->
+    <div id="case-studies" class="page">
+        <div class="container">
+            <h1 class="section-title">Case Studies</h1>
+            <p class="section-subtitle">Real results from real clients</p>
+
+            <div class="case-study">
+                <h3>E-Commerce Demand Forecasting</h3>
+                <p class="client">RetailCorp Inc.</p>
+                <p><strong>Challenge:</strong> Inventory misalignment causing 15% stockouts and excess inventory. Manual forecasting was time-consuming and inaccurate.</p>
+                <p><strong>Solution:</strong> Implemented an LSTM-based demand forecasting model using 5 years of historical sales data, seasonal patterns, and external factors.</p>
+                <p><strong>Technology:</strong> Python, TensorFlow, AWS SageMaker</p>
+                <div class="result">
+                    ✨ Result: 30% improvement in demand accuracy • 18% reduction in inventory costs • $2.3M annual savings
+                </div>
+            </div>
+
+            <div class="case-study">
+                <h3>Customer Churn Prediction & Retention</h3>
+                <p class="client">TelecomNext Solutions</p>
+                <p><strong>Challenge:</strong> High customer churn rate (8% annually) affecting revenue and market position. Needed proactive retention strategy.</p>
+                <p><strong>Solution:</strong> Built a gradient boosting model identifying churn signals early, enabling targeted retention campaigns and personalized offers.</p>
+                <p><strong>Technology:</strong> Python, XGBoost, Tableau, PostgreSQL</p>
+                <div class="result">
+                    ✨ Result: 25% reduction in churn • $5.1M revenue retention • 40% higher ROI on retention campaigns
+                </div>
+            </div>
+
+            <div class="case-study">
+                <h3>Intelligent Document Processing</h3>
+                <p class="client">FinanceFlow Ltd.</p>
+                <p><strong>Challenge:</strong> Processing 10,000+ documents monthly manually, error-prone and time-consuming. 6-week processing cycle.</p>
+                <p><strong>Solution:</strong> Developed an AI pipeline combining OCR, NLP, and document classification to automate extraction and validation.</p>
+                <p><strong>Technology:</strong> Python, PyTorch, Google Cloud Vision API, FastAPI</p>
+                <div class="result">
+                    ✨ Result: 90% automation rate • Processing time reduced to 2 days • 95% accuracy rate
+                </div>
+            </div>
+
+            <div class="case-study">
+                <h3>Real-Time Sales Analytics Dashboard</h3>
+                <p class="client">GlobalTrade Partners</p>
+                <p><strong>Challenge:</strong> Executives lacked real-time visibility into sales performance across 50+ locations. Reports took 3 days to generate.</p>
+                <p><strong>Solution:</strong> Built an interactive BI dashboard with real-time data pipeline, predictive analytics, and custom KPIs.</p>
+                <p><strong>Technology:</strong> Looker, BigQuery, Apache Airflow, Cloud Functions</p>
+                <div class="result">
+                    ✨ Result: Real-time insights • 85% faster decision-making • 22% increase in quarterly revenue
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INSIGHTS/BLOG PAGE -->
+    <div id="blog" class="page">
+        <div class="container">
+            <h1 class="section-title">Latest Insights</h1>
+            <p class="section-subtitle">Stay updated on AI trends, best practices, and industry innovations</p>
+
+            <div class="grid">
+                <div class="blog-post">
+                    <div class="blog-post-meta">
+                        <div class="date">January 15, 2025</div>
+                        <h3>The Future of Generative AI in Enterprise: 2025 Predictions</h3>
+                        <p>Explore how GPT, Claude, and emerging models are transforming enterprise workflows. From customer service automation to content creation, we break down practical applications and ROI metrics.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+
+                <div class="blog-post">
+                    <div class="blog-post-meta">
+                        <div class="date">January 10, 2025</div>
+                        <h3>Building ML Models That Actually Scale: MLOps Best Practices</h3>
+                        <p>Learn how to move your ML models from notebooks to production. This comprehensive guide covers containerization, versioning, monitoring, and deployment strategies.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+
+                <div class="blog-post">
+                    <div class="blog-post-meta">
+                        <div class="date">January 5, 2025</div>
+                        <h3>Data Privacy in the Age of AI: Compliance and Best Practices</h3>
+                        <p>GDPR, CCPA, and emerging regulations are reshaping how companies handle data. Discover frameworks for building privacy-first AI systems without sacrificing performance.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+
+                <div class="blog-post">
+                    <div class="blog-post-meta">
+                        <div class="date">December 28, 2024</div>
+                        <h3>From Data Chaos to Insights: Data Warehouse Architecture Patterns</h3>
+                        <p>Modern data warehouses power business intelligence. Explore medallion architecture, star schemas, and real-time data patterns for effective analytics.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+
+                <div class="blog-post">
+                    <div class="blog-post-meta">
+                        <div class="date">December 20, 2024</div>
+                        <h3>Computer Vision 101: From Theory to Production Applications</h3>
+                        <p>Demystify computer vision. Learn about neural networks, pre-trained models, transfer learning, and real-world use cases from retail to healthcare.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+
+                <div class="blog-post">
+                    <div class="blog-post-meta">
+                        <div class="date">December 15, 2024</div>
+                        <h3>RAG vs Fine-tuning: When to Use Each LLM Customization Approach</h3>
+                        <p>Choosing between Retrieval-Augmented Generation and fine-tuning? This guide helps you select the right approach for your use case and constraints.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAREERS PAGE -->
+    <div id="careers" class="page">
+        <div class="container">
+            <h1 class="section-title">Join Our Team of Innovators</h1>
+            <p class="section-subtitle">We're building the future of AI and data analytics. Let's do it together.</p>
+
+            <div class="card" style="max-width: 800px; margin: 0 auto 3rem;">
+                <h2 style="color: var(--primary-dark); margin-bottom: 1.5rem;">Why Work at Technova?</h2>
+                <ul style="color: var(--text-light); line-height: 2; font-size: 1.05rem;">
+                    <li>✓ <strong>Cutting-edge Technology:</strong> Work with the latest AI/ML frameworks, cloud platforms, and development tools</li>
+                    <li>✓ <strong>Continuous Learning:</strong> Access to training, conferences, and certifications. Learn from industry experts</li>
+                    <li>✓ <strong>Collaborative Culture:</strong> Cross-functional teams that value diverse perspectives and bold ideas</li>
+                    <li>✓ <strong>Competitive Compensation:</strong> Market-competitive salaries with stock options and performance bonuses</li>
+                    <li>✓ <strong>Flexible Work:</strong> Remote-first with flexible hours. Work from anywhere</li>
+                    <li>✓ <strong>Impact:</strong> Build products and solutions that directly improve client businesses and industries</li>
+                </ul>
+            </div>
+
+            <h2 class="section-title">Current Openings</h2>
+
+            <div class="job-opening" onclick="openJobModal(event, 'data-scientist')">
+                <h3>📊 Data Scientist</h3>
+                <span class="job-type">Full-Time</span>
+                <p style="color: var(--text-light); margin: 1rem 0;">Drive insights from complex datasets and build predictive models that power our solutions.</p>
+                <div class="job-details">
+                    <div class="job-detail">
+                        <strong>Location</strong>
+                        Remote / Bangalore
+                    </div>
+                    <div class="job-detail">
+                        <strong>Experience</strong>
+                        3-5 years
+                    </div>
+                    <div class="job-detail">
+                        <strong>Salary</strong>
+                        ₹12L - ₹18L
+                    </div>
+                </div>
+            </div>
+
+            <div class="job-opening" onclick="openJobModal(event, 'ml-engineer')">
+                <h3>🤖 Machine Learning Engineer</h3>
+                <span class="job-type">Full-Time</span>
+                <p style="color: var(--text-light); margin: 1rem 0;">Design, develop, and deploy machine learning models at scale. Focus on MLOps and production systems.</p>
+                <div class="job-details">
+                    <div class="job-detail">
+                        <strong>Location</strong>
+                        Remote / Hyderabad
+                    </div>
+                    <div class="job-detail">
+                        <strong>Experience</strong>
+                        4-6 years
+                    </div>
+                    <div class="job-detail">
+                        <strong>Salary</strong>
+                        ₹15L - ₹22L
+                    </div>
+                </div>
+            </div>
+
+            <div class="job-opening" onclick="openJobModal(event, 'ai-developer')">
+                <h3>🧠 AI Developer (Generative AI)</h3>
+                <span class="job-type">Full-Time</span>
+                <p style="color: var(--text-light); margin: 1rem 0;">Build innovative solutions using large language models, prompt engineering, and RAG pipelines.</p>
+                <div class="job-details">
+                    <div class="job-detail">
+                        <strong>Location</strong>
+                        Remote / Pune
+                    </div>
+                    <div class="job-detail">
+                        <strong>Experience</strong>
+                        2-4 years
+                    </div>
+                    <div class="job-detail">
+                        <strong>Salary</strong>
+                        ₹10L - ₹15L
+                    </div>
+                </div>
+            </div>
+
+            <div class="job-opening" onclick="openJobModal(event, 'data-analyst')">
+                <h3>📈 Data Analyst</h3>
+                <span class="job-type">Full-Time</span>
+                <p style="color: var(--text-light); margin: 1rem 0;">Transform raw data into actionable insights. Build dashboards and reports that drive business decisions.</p>
+                <div class="job-details">
+                    <div class="job-detail">
+                        <strong>Location</strong>
+                        Remote / Mumbai
+                    </div>
+                    <div class="job-detail">
+                        <strong>Experience</strong>
+                        2-3 years
+                    </div>
+                    <div class="job-detail">
+                        <strong>Salary</strong>
+                        ₹8L - ₹12L
+                    </div>
+                </div>
+            </div>
+
+            <div class="job-opening" onclick="openJobModal(event, 'internship')">
+                <h3>🌟 Internship Program (Multiple Roles)</h3>
+                <span class="job-type">Internship</span>
+                <p style="color: var(--text-light); margin: 1rem 0;">Jumpstart your career in AI/ML. Work on real projects, mentorship, and potential for conversion to full-time roles.</p>
+                <div class="job-details">
+                    <div class="job-detail">
+                        <strong>Duration</strong>
+                        3-6 months
+                    </div>
+                    <div class="job-detail">
+                        <strong>Roles</strong>
+                        ML, Data, AI, Backend
+                    </div>
+                    <div class="job-detail">
+                        <strong>Stipend</strong>
+                        ₹30K - ₹60K/month
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="applicationModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="jobTitle" style="color: var(--primary-dark);"></h2>
+                    <span class="modal-close" onclick="closeJobModal()">✕</span>
+                </div>
+                <div id="applicationAlert" class="alert success"></div>
+                <form onsubmit="submitApplication(event)">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="appName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" id="appEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" id="appPhone" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Years of Experience *</label>
+                        <input type="number" id="appExperience" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Resume/CV (Paste your profile link or describe experience) *</label>
+                        <textarea id="appResume" required placeholder="LinkedIn profile, GitHub, or brief experience summary"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Cover Letter (Why do you want to join Technova?)</label>
+                        <textarea id="appCoverLetter" placeholder="Tell us about your passion for AI/ML and what excites you about this role"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <div class="container">
+            <h1 class="section-title">Get In Touch</h1>
+            <p class="section-subtitle">Have a project in mind? Let's discuss how we can help transform your business</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-bottom: 3rem;" class="responsive-grid">
+                <div>
+                    <h2 style="color: var(--primary-dark); margin-bottom: 2rem;">Contact Information</h2>
+                    
+                    <div class="card">
+                        <h3 style="color: var(--primary-dark);">📍 Office</h3>
+                        <p style="color: var(--text-light);">
+                            Technova Solutions<br/>
+                            Tech Park, 5th Floor<br/>
+                            Bangalore, Karnataka 560001<br/>
+                            India
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3 style="color: var(--primary-dark);">📧 Email</h3>
+                        <p style="color: var(--text-light);">
+                            <a href="mailto:hello@technova.com" style="color: var(--secondary-blue);">hello@technova.com</a><br/>
+                            <a href="mailto:careers@technova.com" style="color: var(--secondary-blue);">careers@technova.com</a>
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3 style="color: var(--primary-dark);">📞 Phone</h3>
+                        <p style="color: var(--text-light);">
+                            +91 80 4141 5959<br/>
+                            Mon-Fri, 9 AM - 6 PM IST
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3 style="color: var(--primary-dark);">🌐 Social</h3>
+                        <div class="social-links">
+                            <a href="#">LinkedIn</a>
+                            <a href="#">Twitter</a>
+                            <a href="#">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h2 style="color: var(--primary-dark); margin-bottom: 2rem;">Send us a Message</h2>
+                    <form onsubmit="submitContact(event)">
+                        <div id="contactAlert" class="alert success"></div>
+                        <div class="form-group">
+                            <label>Name *</label>
+                            <input type="text" id="contactName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" id="contactEmail" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Company</label>
+                            <input type="text" id="contactCompany">
+                        </div>
+                        <div class="form-group">
+                            <label>Subject *</label>
+                            <input type="text" id="contactSubject" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Message *</label>
+                            <textarea id="contactMessage" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1rem;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            @media (max-width: 768px) {
+                .responsive-grid {
+                    grid-template-columns: 1fr !important;
+                }
+            }
+        </style>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Technova</h4>
+                <p style="color: #cbd5e1; line-height: 1.8;">
+                    Engineering AI-driven growth for modern businesses. Transform data into strategic advantage.
+                </p>
+                <div class="social-links">
+                    <a href="#">in</a>
+                    <a href="#">tw</a>
+                    <a href="#">gh</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <a onclick="showPage('services')">AI/ML Engineering</a>
+                <a onclick="showPage('services')">Data Analytics</a>
+                <a onclick="showPage('services')">Custom Development</a>
+                <a onclick="showPage('services')">MLOps</a>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <a onclick="showPage('about')">About Us</a>
+                <a onclick="showPage('careers')">Careers</a>
+                <a onclick="showPage('blog')">Insights</a>
+                <a onclick="showPage('contact')">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="#">Documentation</a>
+                <a href="#">Blog</a>
+                <a href="#">Case Studies</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Technova Solutions. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
+            document.getElementById('navMenu').classList.remove('active');
+        }
+
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // Job modal functions
+        function openJobModal(event, jobId) {
+            event.preventDefault();
+            const titles = {
+                'data-scientist': '📊 Data Scientist',
+                'ml-engineer': '🤖 Machine Learning Engineer',
+                'ai-developer': '🧠 AI Developer (Generative AI)',
+                'data-analyst': '📈 Data Analyst',
+                'internship': '🌟 Internship Program'
+            };
+            document.getElementById('jobTitle').textContent = titles[jobId];
+            document.getElementById('applicationModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeJobModal() {
+            document.getElementById('applicationModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            document.getElementById('applicationAlert').classList.remove('active');
+        }
+
+        function submitApplication(event) {
+            event.preventDefault();
+            const name = document.getElementById('appName').value;
+            const email = document.getElementById('appEmail').value;
+            
+            const alertEl = document.getElementById('applicationAlert');
+            alertEl.innerHTML = `<span style="color: var(--accent-teal);">✓ Thank you, ${name}! Your application has been received. We'll contact you at ${email} within 48 hours.</span>`;
+            alertEl.classList.add('active');
+            
+            setTimeout(() => {
+                event.target.reset();
+                closeJobModal();
+            }, 2000);
+        }
+
+        // Contact form submission
+        function submitContact(event) {
+            event.preventDefault();
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            
+            const alertEl = document.getElementById('contactAlert');
+            alertEl.innerHTML = `<span style="color: var(--accent-teal);">✓ Thank you, ${name}! We've received your message and will get back to you at ${email} shortly.</span>`;
+            alertEl.classList.add('active');
+            
+            setTimeout(() => {
+                event.target.reset();
+                alertEl.classList.remove('active');
+            }, 3000);
+        }
+
+        // Close modal on outside click
+        document.getElementById('applicationModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeJobModal();
+            }
+        });
+    </script>
+</body>
+</html>
